@@ -18,19 +18,18 @@ export class Sliderview extends PureComponent {
   }
 
   handleMouse(active, id) {
-    // const maphover = this.state.datamovie.map(val => {
-    //   if (val.id === id) {
-    //     return { ...val, ishover: active };
-    //   }else {
-    //     return val
-    //   } 
-    // });
-    const maphover  = this.state.datamovie[index]
-
-    console.log(maphover);
-    // this.setState({
-    //   datamovie: [...this.maphover]
-    // });
+    // this.state.datamovie[index].ishover = active;
+    // const datamap = this.state.datamovie[index];
+    const mapdatahover = this.state.datamovie.map(val => {
+      if (val.id === id) {
+        return { ...val, ishover: active };
+      } else {
+        return val;
+      }
+    });
+    this.setState({
+      datamovie: [...mapdatahover]
+    });
   }
 
   getSpringProps(index) {
