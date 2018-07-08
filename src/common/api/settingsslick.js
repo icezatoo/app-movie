@@ -1,7 +1,7 @@
 const settings = {
   className: '',
-  autoplay: true,
-  speed: 3000,
+  // autoplay: true,
+  // speed: 5000,
   infinite: true,
   responsive: [
     {

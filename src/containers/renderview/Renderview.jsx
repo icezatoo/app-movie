@@ -24,13 +24,14 @@ class Renderview extends PureComponent {
         <ul>
           <WithSubscriptionRPC
             url={apipath}
+            mode='datamovie'
             render={({ data, loader }) => (
               <div>
                 {loader && <CircularLoader />}
                 {data && (
                   <Sliderview
                     imgbaseurl={images.base_url + images.backdrop_sizes[0]}
-                    sliderdata={data.results}
+                    sliderdata={data}
                     onclickDataMovie={this.onclickDataMovie}
                   />
                 )}
