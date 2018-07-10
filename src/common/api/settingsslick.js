@@ -1,7 +1,10 @@
 const settings = {
-  className: '',
+  cssEase: 'linear',
+  dots: true,
+  lazyLoad: true,
   // autoplay: true,
-  // speed: 5000,
+  // speed: 2000,
+  // autoplaySpeed: 5000,
   infinite: true,
   responsive: [
     {

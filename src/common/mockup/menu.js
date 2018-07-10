@@ -6,7 +6,7 @@ module.exports = [
   },
   {
     key: 2,
-    link: 'search',
+    link: '/search',
     name: 'Search'
   }
 ];

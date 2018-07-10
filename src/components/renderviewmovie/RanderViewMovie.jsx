@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './steppermain.css';
+import { dataviewmovie } from '../../common/mockup/listdataview';
+import { api_Key } from '../../common/api/connect';
 import { withStyles } from '@material-ui/core/styles';
 import GridContainer from '../../components/grid/girdcontainer';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { pathMovie, api_Key } from '../../common/api/connect';
-import Renderview from '../renderview/Renderview';
+import MovielistItem from '../movielistitem/MovielistItem';
 import WithSubscriptionRPC from '../../rpc/WithSubscriptionRPC';
 
 const styles = theme => ({
@@ -19,40 +19,19 @@ const styles = theme => ({
   }
 });
 
-class Steppermain extends Component {
+class RanderViewMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
       classes: this.props.classes,
       justify: 'center',
-      viewdata: [
-        {
-          id: 1,
-          header: 'NowPlaying',
-          apipath: `${pathMovie}/movie/now_playing?api_key=${api_Key}&language=en-US&page=1`
-        },
-        {
-          id: 2,
-          header: 'Popular',
-          apipath: `${pathMovie}/movie/popular?api_key=${api_Key}&language=en-US&page=1`
-        },
-        {
-          id: 3,
-          header: 'TopRated',
-          apipath: `${pathMovie}/movie/top_rated?api_key=${api_Key}&language=en-US&page=1`
-        },
-        {
-          id: 4,
-          header: 'Upcoming',
-          apipath: `${pathMovie}/movie/upcoming?api_key=${api_Key}&language=en-US&page=1`
-        }
-      ]
+      viewdata: [...dataviewmovie]
     };
   }
 
   render() {
     const { classes } = this.state;
-    const configuration = `${pathMovie}/configuration?api_key=${api_Key}`;
+    const configuration = `/configuration?api_key=${api_Key}`;
     return (
       <GridContainer spacing={24} classes={classes.root}>
         <WithSubscriptionRPC
@@ -62,7 +41,7 @@ class Steppermain extends Component {
             this.state.viewdata.map(valueview => (
               <Grid item xs={12} key={valueview.id}>
                 <Paper className={classes.paper}>
-                  <Renderview
+                  <MovielistItem
                     viewdata={valueview}
                     configuration={configuration}
                   />
@@ -76,4 +55,4 @@ class Steppermain extends Component {
   }
 }
 
-export default withStyles(styles)(Steppermain);
+export default withStyles(styles)(RanderViewMovie);

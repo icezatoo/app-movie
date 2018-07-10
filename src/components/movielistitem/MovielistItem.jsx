@@ -10,11 +10,10 @@ const HeaderContainer = styled.h1`
   font-size: 25px;
 `;
 
-class Renderview extends PureComponent {
-  onclickDataMovie(movie) {
-    console.log(movie, 'movie');
-  }
-
+const SliderViewContainer = styled.div`
+  height: 200px;
+`;
+class MovielistItem extends PureComponent {
   render() {
     const { header, apipath } = this.props.viewdata;
     const { images } = this.props.configuration.data;
@@ -24,18 +23,16 @@ class Renderview extends PureComponent {
         <ul>
           <WithSubscriptionRPC
             url={apipath}
-            mode='datamovie'
             render={({ data, loader }) => (
-              <div>
+              <SliderViewContainer>
                 {loader && <CircularLoader />}
                 {data && (
                   <Sliderview
                     imgbaseurl={images.base_url + images.backdrop_sizes[0]}
-                    sliderdata={data}
-                    onclickDataMovie={this.onclickDataMovie}
+                    sliderdata={data.results}
                   />
                 )}
-              </div>
+              </SliderViewContainer>
             )}
           />
         </ul>
@@ -43,4 +40,4 @@ class Renderview extends PureComponent {
     );
   }
 }
-export default Renderview;
+export default MovielistItem;

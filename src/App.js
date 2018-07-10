@@ -12,7 +12,6 @@ import NotFound from './components/notfound/NotFound';
 const AppContainer = styled.div`
   font-family: 'Spirax';
 `;
-
 const ContentContainer = styled.section`
   padding: 0;
 `;
@@ -25,6 +24,10 @@ const Search = asyncComponent(() =>
   import('./containers/searchmain/Searchmain').then(module => module.default)
 );
 
+const Movie = asyncComponent(() =>
+  import('./containers/moviedetail/Moivedetail').then(module => module.default)
+);
+
 class App extends Component {
   render() {
     return (
@@ -34,7 +37,8 @@ class App extends Component {
           <section className="hero">
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/search" component={Search} />
+              <Route exact path="/search" component={Search} />
+              <Route exact path="/movie/:movieId" component={Movie} />
               <Route path="*" component={NotFound} />
             </Switch>
           </section>

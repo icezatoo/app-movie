@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Steppermain from '../stepper/Steppermain';
-// min-height: 100vh;
+import RanderViewMovie from '../../components/renderviewmovie/RanderViewMovie';
 const HomeContainer = styled.div`
   display: flex;
   align-items: center;
@@ -14,7 +13,7 @@ class Homemain extends Component {
   render() {
     return (
       <HomeContainer>
-        <Steppermain />
+        <RanderViewMovie />
       </HomeContainer>
     );
   }
