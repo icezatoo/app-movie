@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+
 class WithSubscriptionRPC extends React.Component {
   state = {
     data: null,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import menus from '../../common/mockup/menu';
+import menus from '../../common/config/menu';
 
 const HeaderContainer = styled.div`
   position: fixed;

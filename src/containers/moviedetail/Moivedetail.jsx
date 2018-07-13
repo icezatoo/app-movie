@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import RenderMoviedetail from '../../components/moviedetail/rendermoviedetail/RenderMoviedetail';
+import * as movieActions from '../../common/actions/moviedetails/moviedetailaction';
+import CircularLoader from '../../common/components/loader/CircularLoader';
 import styled from 'styled-components';
-import GridContainer from '../../components/grid/girdcontainer';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import img from '../../assets/images/pun.jpg';
 const MovieContainer = styled.div`
   display: flex;
   align-items: center;
@@ -13,69 +12,61 @@ const MovieContainer = styled.div`
   padding-top: 60px;
 `;
 
-const MovieImages = styled.div`
-  background-image: url(${img});
-  width: auto;
-  height: 250px;
-`;
-
-const styles = theme => ({
-  root: {
-    flexGrow: 1
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary
-  }
-});
-
 class Moivedetail extends Component {
-  constructor(props) {
-    super(props);
-    console.log(props.match);
+  componentDidMount() {
+    const params = this.props.match.params.movieId;
+    this.props.fetchMoviedetails(params);
   }
+
+  _mappathImages = (images, sizes, mode) => mappathsize => {
+    return images.base_url + mappathsize[sizes] + mode;
+  };
+
+  _mapDataService = () => {
+    if (this.props.datamovie && this.props.dataconfig) {
+      const { datamovie, dataconfig } = this.props;
+      const { backdrop_path, poster_path } = datamovie.moviedetail;
+      const { images } = dataconfig;
+      const datamap = {
+        ...datamovie,
+        ...dataconfig,
+        imgbackdrop: this._mappathImages(images, 3, backdrop_path)(
+          images.backdrop_sizes
+        ),
+        imgposter: this._mappathImages(images, 3, poster_path)(
+          images.poster_sizes
+        )
+      };
+      return datamap;
+    }
+  };
+
   render() {
-    const { classes } = this.props;
+    const { loaddata } = this.props;
+    const mapdatamovie = this._mapDataService();
     return (
       <MovieContainer>
-        <GridContainer spacing={16} classes={classes.root}>
-          <Grid item xs={12}>
-            <div>
-              <MovieImages />
-              {/* <p>testhead</p> */}
-            </div>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container spacing={16}>
-              <Grid item xs>
-                <Paper className={classes.paper}>
-                  <div>
-                    <div>
-                      <img src={img} width="450" height="250" alt="" />
-                    </div>
-                    <div>
-                      <p>vote : 7.7</p>
-                      <p>vote count : 2000</p>
-                    </div>
-                  </div>
-                </Paper>
-              </Grid>
-              <Grid item xs={8}>
-                <Paper className={classes.paper}>
-                  <div>
-                    <p>test</p>
-                  </div>
-                </Paper>
-              </Grid>
-            </Grid>
-          </Grid>
-        </GridContainer>
+        {!loaddata ? (
+          <RenderMoviedetail dataapi={mapdatamovie} />
+        ) : (
+          <CircularLoader />
+        )}
       </MovieContainer>
     );
   }
 }
 
-Moivedetail.propTypes = {};
+const mapStateToProps = (state, ownProps) => ({
+  datamovie: state.moviedetail.datamovie,
+  dataconfig: state.movieconfig.dataconfig,
+  loaddata: state.moviedetail.loader
+});
+const mapDispatchToProps = dispatch => ({
+  fetchMoviedetails: movieid =>
+    dispatch(movieActions.fetchMoviedetails(movieid))
+});
 
-export default withStyles(styles)(Moivedetail);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Moivedetail);

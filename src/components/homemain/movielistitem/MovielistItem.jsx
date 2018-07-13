@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import WithSubscriptionRPC from '../../rpc/WithSubscriptionRPC';
-import CircularLoader from '../../common/components/loader/CircularLoader';
+import WithSubscriptionRPC from '../../../rpc/WithSubscriptionRPC';
 import styled from 'styled-components';
-import Sliderview from '../../components/slider/Sliderview';
+import Sliderview from '../slider/Sliderview';
+import CircularLoader from '../../../common/components/loader/CircularLoader';
 const HeaderContainer = styled.h1`
   text-align: left;
   color: black;
@@ -16,7 +16,7 @@ const SliderViewContainer = styled.div`
 class MovielistItem extends PureComponent {
   render() {
     const { header, apipath } = this.props.viewdata;
-    const { images } = this.props.configuration.data;
+    const { images } = this.props.configuration;
     return (
       <div>
         <HeaderContainer> {header} </HeaderContainer>

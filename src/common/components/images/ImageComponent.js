@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-const ImageComponent = props => {
+const ImageComponent = ({ styleclasss, styles, src, alt, widths, height }) => {
   return (
     <img
-      className={props.styleclasss}
-      style={props.styles}
-      src={props.src}
-      alt={props.alt}
-      width={props.widths}
-      height={props.height}
+      className={styleclasss}
+      style={styles}
+      src={src}
+      alt={alt}
+      width={widths}
+      height={height}
     />
   );
 };

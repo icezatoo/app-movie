@@ -1,19 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import { Router } from 'react-router';
-import registerServiceWorker from './registerServiceWorker';
+import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
+import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
+import './index.css';
+import configureStore from './configureStore';
+import * as MovieconfigActions from './common/actions/movieconfig/movieconfigaction';
 
-axios.defaults.baseURL = 'https://api.themoviedb.org/3';
-
+const store = configureStore();
 const history = createBrowserHistory();
+axios.defaults.baseURL = 'https://api.themoviedb.org/3';
+store.dispatch(MovieconfigActions.fetchMovieConfig());
 ReactDOM.render(
-  <Router history={history}>
-    <App />
-  </Router>,
+  <Provider store={store}>
+    <Router history={history}>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 registerServiceWorker();

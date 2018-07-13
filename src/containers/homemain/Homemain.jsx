@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-import RanderViewMovie from '../../components/renderviewmovie/RanderViewMovie';
+import RanderViewMovie from '../../components/homemain/renderviewmovie/RanderViewMovie';
 const HomeContainer = styled.div`
   display: flex;
   align-items: center;
@@ -13,10 +14,14 @@ class Homemain extends Component {
   render() {
     return (
       <HomeContainer>
-        <RanderViewMovie />
+        <RanderViewMovie dataconfigapi={this.props.datamovieconfig} />
       </HomeContainer>
     );
   }
 }
 
-export default Homemain;
+const mapStateToProps = (state, ownProps) => ({
+  datamovieconfig: state.movieconfig.dataconfig
+});
+
+export default connect(mapStateToProps)(Homemain);

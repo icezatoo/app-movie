@@ -1,21 +1,13 @@
 import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { settings } from '../../common/api/settingsslick';
+import { settings } from '../../../common/api/settingsslick';
+import { stylesmaterial } from '../../../common/config/stylematerial';
 import Slider from 'react-slick';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
-import ImageComponent from '../images/ImageComponent';
+import ImageComponent from '../../../common/components/images/ImageComponent';
 import './slider.css';
-
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit
-  },
-  input: {
-    display: 'none'
-  }
-});
 
 export class Sliderview extends PureComponent {
   render() {
@@ -53,4 +45,4 @@ export class Sliderview extends PureComponent {
   }
 }
 
-export default withStyles(styles)(Sliderview);
+export default withStyles(stylesmaterial)(Sliderview);
