@@ -1,32 +1,26 @@
-import Axios from 'axios';
-import { api_Key } from '../../api/connect';
+export const REQUESTED_MOVIECONFIG_SUCCESS = 'FETCH_MOVIECONFIG_SUCCESS';
+export const REQUESTED_MOVIECONFIG_ERROR = 'FETCH_MOVIECONFIG_ERROR';
+export const REQUESTED_MOVIECONFIG = 'FETCH_MOVIECONFIG';
+export const FETCHED_CONFIG = 'FETCHED_CONFIG';
 
-export const FETCH_MOVIECONFIG_SUCCESS = 'FETCH_MOVIECONFIG_SUCCESS';
-export const FETCH_MOVIECONFIG_ERROR = 'FETCH_MOVIECONFIG_ERROR';
+export const requestMovieconfig = () => {
+  return { type: REQUESTED_MOVIECONFIG };
+};
 
-export const fetchMovieconfigSuccess = movieconfig => {
+export const requestMovieconfigSuccess = movieconfig => {
   return {
-    type: 'FETCH_MOVIECONFIG_SUCCESS',
+    type: REQUESTED_MOVIECONFIG_SUCCESS,
     movieconfig
   };
 };
 
-export const fetchMovieconfigError = error => {
+export const requestMovieconfigError = error => {
   return {
-    type: 'FETCH_MOVIECONFIG_ERROR',
+    type: REQUESTED_MOVIECONFIG_ERROR,
     error
   };
 };
 
-export const fetchMovieConfig = () => {
-  return dispatch => {
-    return Axios.get(`/configuration?api_key=${api_Key}`)
-      .then(response => {
-        dispatch(fetchMovieconfigSuccess(response.data));
-      })
-      .catch(error => {
-        dispatch(fetchMovieconfigError(error));
-        throw error;
-      });
-  };
+export const fetchdataconfig = () => {
+  return { type: FETCHED_CONFIG };
 };

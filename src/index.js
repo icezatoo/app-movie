@@ -13,7 +13,7 @@ import * as MovieconfigActions from './common/actions/movieconfig/movieconfigact
 const store = configureStore();
 const history = createBrowserHistory();
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
-store.dispatch(MovieconfigActions.fetchMovieConfig());
+store.dispatch(MovieconfigActions.fetchdataconfig());
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>

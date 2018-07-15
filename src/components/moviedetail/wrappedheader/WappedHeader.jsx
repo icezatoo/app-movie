@@ -4,9 +4,9 @@ import GridContainer from '../../../common/components/grid/girdcontainer';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ImageComponent from '../../../common/components/images/ImageComponent';
-import './wapped.css';
 import HeaderTitle from '../headertitle/Headertitle';
 import Percentagecircle from '../../../common/components/percentagecircle/Percentagecircle';
+import './wapped.css';
 
 const MovieImages = styled.div`
   background-image: url(${props => props.img});
@@ -36,8 +36,15 @@ class WappedHeader extends PureComponent {
   }
   render() {
     const { imgposter, imgbackdrop, moviedetail } = this.props.dataapi;
-    const { original_title, overview, release_date } = moviedetail;
+    const {
+      original_title,
+      overview,
+      release_date,
+      vote_average
+    } = moviedetail;
     const yeardate = release_date.split('-')[0];
+    const stylepercentage = { strokecircle: 8.8, strokecirclebg: 10.8 };
+    const percentage = (vote_average / 10) * 100;
     return (
       <MovieImages img={imgbackdrop}>
         <RadialMovieImages>
@@ -65,9 +72,17 @@ class WappedHeader extends PureComponent {
                     </HeaderTitle>
                   </Grid>
                   <Grid item xs={12}>
-                    <Percentagecircle radius={100} value={50 / 100}>
-                      50%
+                    <Percentagecircle
+                      radius={30}
+                      value={percentage / 100}
+                      settingsstyle={stylepercentage}
+                    >
+                      {percentage}%
                     </Percentagecircle>
+                    <HeaderTitle size="2.4" height="1.1" weight="500">
+                     test
+                    </HeaderTitle>
+
                   </Grid>
                   <Grid item xs={12}>
                     <HeaderTitle size="1.3" height="2.0" weight="600">

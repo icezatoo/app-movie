@@ -4,7 +4,6 @@ const Initstate = {
   error: null,
   datamovie: null
 };
-
 export const movieReducer = (state = Initstate, action) => {
   switch (action.type) {
     case MoviedetailActions.FETCH_MOVIEDETAIL_SUCCESS:
