@@ -12,7 +12,7 @@ class RenderMoviedetail extends Component {
     return (
       <GridContainer spacing={16} classes={classes.root}>
         <Grid item xs={12}>
-          <WappedHeader classes={classes.root} dataapi={dataapi} />
+          <WappedHeader classes={classes} dataapi={dataapi} />
         </Grid>
         <Grid item xs={12}>
           <Grid container spacing={16}>

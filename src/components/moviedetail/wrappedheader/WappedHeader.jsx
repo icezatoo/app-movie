@@ -5,6 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ImageComponent from '../../../common/components/images/ImageComponent';
 import HeaderTitle from '../headertitle/Headertitle';
+import classNames from 'classnames';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 import Percentagecircle from '../../../common/components/percentagecircle/Percentagecircle';
 import './wapped.css';
 
@@ -43,6 +46,7 @@ class WappedHeader extends PureComponent {
       vote_average
     } = moviedetail;
     const yeardate = release_date.split('-')[0];
+    const { root, button, leftIcon, iconSmall } = this.props.classes;
     const stylepercentage = { strokecircle: 8.8, strokecirclebg: 10.8 };
     const percentage = (vote_average / 10) * 100;
     return (
@@ -50,7 +54,7 @@ class WappedHeader extends PureComponent {
         <RadialMovieImages>
           <GridContainer
             spacing={16}
-            classes={this.props.classes}
+            classes={root}
             alignItems="center"
             justify="center"
           >
@@ -62,7 +66,7 @@ class WappedHeader extends PureComponent {
               <div className="test">
                 <GridContainer
                   spacing={16}
-                  classes={this.props.classes}
+                  classes={root}
                   alignItems="center"
                   justify="center"
                 >
@@ -71,7 +75,7 @@ class WappedHeader extends PureComponent {
                       {original_title} ({yeardate})
                     </HeaderTitle>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={3}>
                     <Percentagecircle
                       radius={30}
                       value={percentage / 100}
@@ -79,11 +83,22 @@ class WappedHeader extends PureComponent {
                     >
                       {percentage}%
                     </Percentagecircle>
-                    <HeaderTitle size="2.4" height="1.1" weight="500">
-                     test
-                    </HeaderTitle>
-
+                    <p>UserScore</p>
                   </Grid>
+
+                  <Grid item xs={8}>
+                    <Button
+                      variant="outlined"
+                      className={button}
+                      style={{ color: 'white' }}
+                    >
+                      <Icon className={classNames(leftIcon, iconSmall)}>
+                        play_arrow
+                      </Icon>
+                      <p>Play Trailer</p>
+                    </Button>
+                  </Grid>
+
                   <Grid item xs={12}>
                     <HeaderTitle size="1.3" height="2.0" weight="600">
                       Overview
