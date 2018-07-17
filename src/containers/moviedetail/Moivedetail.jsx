@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RenderMoviedetail from '../../components/moviedetail/rendermoviedetail/RenderMoviedetail';
-import * as movieActions from '../../common/actions/moviedetails/moviedetailaction';
+import * as MovieDetailActions from '../../common/actions/moviedetails/moviedetailaction';
 import CircularLoader from '../../common/components/loader/CircularLoader';
 import styled from 'styled-components';
 const MovieContainer = styled.div`
@@ -15,7 +15,7 @@ const MovieContainer = styled.div`
 class Moivedetail extends Component {
   componentDidMount() {
     const params = this.props.match.params.movieId;
-    this.props.fetchMoviedetails(params);
+    this.props.fetchdatadetail(params);
   }
 
   _mappathImages = (images, sizes, mode) => mappathsize => {
@@ -42,11 +42,11 @@ class Moivedetail extends Component {
   };
 
   render() {
-    const { loaddata } = this.props;
+    const { loading } = this.props;
     const mapdatamovie = this._mapDataService();
     return (
       <MovieContainer>
-        {!loaddata ? (
+        {loading ? (
           <RenderMoviedetail dataapi={mapdatamovie} />
         ) : (
           <CircularLoader />
@@ -59,11 +59,11 @@ class Moivedetail extends Component {
 const mapStateToProps = (state, ownProps) => ({
   datamovie: state.moviedetail.datamovie,
   dataconfig: state.movieconfig.dataconfig,
-  loaddata: state.moviedetail.loader
+  loading: state.moviedetail.loading
 });
 const mapDispatchToProps = dispatch => ({
-  fetchMoviedetails: movieid =>
-    dispatch(movieActions.fetchMoviedetails(movieid))
+  fetchdatadetail: movieid =>
+    dispatch(MovieDetailActions.fetchdatadetail(movieid))
 });
 
 export default connect(

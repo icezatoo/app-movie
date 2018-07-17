@@ -7,7 +7,7 @@ import { createBrowserHistory } from 'history';
 import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
 import './index.css';
-import configureStore from './configureStore';
+import configureStore from './common/store/configureStore';
 import * as MovieconfigActions from './common/actions/movieconfig/movieconfigaction';
 
 const store = configureStore();
