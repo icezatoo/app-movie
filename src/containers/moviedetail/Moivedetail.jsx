@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
+import { withStyles } from '@material-ui/core/styles';
+import { stylesmaterial } from '../../common/config/stylematerial';
 import RenderMoviedetail from '../../components/moviedetail/rendermoviedetail/RenderMoviedetail';
 import * as MovieDetailActions from '../../common/actions/moviedetails/moviedetailaction';
 import CircularLoader from '../../common/components/loader/CircularLoader';
@@ -47,7 +50,10 @@ class Moivedetail extends Component {
     return (
       <MovieContainer>
         {loading ? (
-          <RenderMoviedetail dataapi={mapdatamovie} />
+          <RenderMoviedetail
+            dataapi={mapdatamovie}
+            classes={this.props.classes}
+          />
         ) : (
           <CircularLoader />
         )}
@@ -66,7 +72,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(MovieDetailActions.fetchdatadetail(movieid))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withStyles(stylesmaterial)
 )(Moivedetail);

@@ -1,27 +1,32 @@
+// @ts-nocheck
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import GridContainer from '../../../common/components/grid/girdcontainer';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import ImageComponent from '../../../common/components/images/ImageComponent';
-import HeaderTitle from '../headertitle/Headertitle';
-import classNames from 'classnames';
-import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
-import Percentagecircle from '../../../common/components/percentagecircle/Percentagecircle';
-import './wapped.css';
+
+import {
+  RenderHeaderTitle,
+  RenderOverview,
+  RenderPercentagecircle,
+  RenderPlayTrailer,
+  DialogVideo
+} from './components';
 
 const MovieImages = styled.div`
   background-image: url(${props => props.img});
-  width: auto;
-  z-index: -1;
-  background-position: 100% 30%;
   background-repeat: no-repeat;
+  background-position: 100% 30%;
+  z-index: -1;
   left: 0;
   right: 0;
   background-size: cover;
   will-change: opacity;
-  transition: filter 1s;
+  transition: 1s filter linear;
+  -webkit-transition: 1s -webkit-filter linear;
+  -moz-transition: 1s -moz-filter linear;
+  -ms-transition: 1s -ms-filter linear;
+  -o-transition: 1s -o-filter linear;
 `;
 
 const RadialMovieImages = styled.div`
@@ -32,85 +37,86 @@ const RadialMovieImages = styled.div`
   );
 `;
 
+const BobyHeaderStyle = styled.div`
+  height: 513px;
+  color: white;
+`;
+
 class WappedHeader extends PureComponent {
   constructor(props) {
     super(props);
-    console.log(props);
+    this.state = {
+      showdialog: false
+    };
+
+    this._handleShow = this._handleShow.bind(this);
+    this._handleClose = this._handleClose.bind(this);
   }
+
+  _handleShow = () => {
+    console.log('test');
+    this.setState({
+      showdialog: true
+    });
+  };
+
+  _handleClose = () => {
+    this.setState({
+      showdialog: false
+    });
+  };
+
   render() {
-    const { imgposter, imgbackdrop, moviedetail } = this.props.dataapi;
     const {
-      original_title,
-      overview,
-      release_date,
-      vote_average
-    } = moviedetail;
-    const yeardate = release_date.split('-')[0];
-    const { root, button, leftIcon, iconSmall } = this.props.classes;
-    const stylepercentage = { strokecircle: 8.8, strokecirclebg: 10.8 };
-    const percentage = (vote_average / 10) * 100;
+      imgposter,
+      imgbackdrop,
+      moviedetail,
+      movievideos
+    } = this.props.dataapi;
+    const { results } = movievideos;
+    const { showdialog } = this.state;
     return (
       <MovieImages img={imgbackdrop}>
         <RadialMovieImages>
-          <GridContainer
-            spacing={16}
-            classes={root}
-            alignItems="center"
-            justify="center"
-          >
-            <Grid item xs={3} />
-            <Grid item xs={3}>
-              <ImageComponent src={imgposter} alt="backf" />
+          <GridContainer spacing={16} alignItems="center" justify="center">
+            <Grid item xs={4}>
+              <GridContainer alignItems="center" justify="center">
+                <ImageComponent src={imgposter} alt="backf" />
+              </GridContainer>
             </Grid>
-            <Grid item xs={6}>
-              <div className="test">
+            <Grid item xs={5}>
+              <BobyHeaderStyle>
                 <GridContainer
                   spacing={16}
-                  classes={root}
                   alignItems="center"
                   justify="center"
                 >
                   <Grid item xs={12}>
-                    <HeaderTitle size="2.4" height="1.1" weight="700">
-                      {original_title} ({yeardate})
-                    </HeaderTitle>
+                    <RenderHeaderTitle {...moviedetail} />
                   </Grid>
                   <Grid item xs={3}>
-                    <Percentagecircle
-                      radius={30}
-                      value={percentage / 100}
-                      settingsstyle={stylepercentage}
-                    >
-                      {percentage}%
-                    </Percentagecircle>
-                    <p>UserScore</p>
+                    <RenderPercentagecircle {...moviedetail} />
                   </Grid>
-
                   <Grid item xs={8}>
-                    <Button
-                      variant="outlined"
-                      className={button}
-                      style={{ color: 'white' }}
-                    >
-                      <Icon className={classNames(leftIcon, iconSmall)}>
-                        play_arrow
-                      </Icon>
-                      <p>Play Trailer</p>
-                    </Button>
+                    <RenderPlayTrailer
+                      _handleShow={this._handleShow}
+                      {...this.props.classes}
+                    />
                   </Grid>
-
                   <Grid item xs={12}>
-                    <HeaderTitle size="1.3" height="2.0" weight="600">
-                      Overview
-                    </HeaderTitle>
-                    <Typography style={{ color: 'white' }}>
-                      {overview}
-                    </Typography>
+                    <RenderOverview {...moviedetail} />
                   </Grid>
                 </GridContainer>
-              </div>
+              </BobyHeaderStyle>
             </Grid>
           </GridContainer>
+          {showdialog && (
+            <DialogVideo
+              _handleClose={this._handleClose}
+              showdialog={showdialog}
+              videodata={results[1]}
+            />
+          )}
         </RadialMovieImages>
       </MovieImages>
     );

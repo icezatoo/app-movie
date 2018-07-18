@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import { stylesmaterial } from '../../../common/config/stylematerial';
 import GridContainer from '../../../common/components/grid/girdcontainer';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -37,4 +35,4 @@ class RenderMoviedetail extends Component {
 
 RenderMoviedetail.propTypes = {};
 
-export default withStyles(stylesmaterial)(RenderMoviedetail);
+export default RenderMoviedetail;
