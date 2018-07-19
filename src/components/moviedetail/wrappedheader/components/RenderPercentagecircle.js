@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Percentagecircle from '../../../../common/components/percentagecircle/Percentagecircle';
 
 const RenderPercentagecircle = ({ vote_average }) => {
@@ -9,21 +9,21 @@ const RenderPercentagecircle = ({ vote_average }) => {
       .toString(16)
       .substr(2, 6);
   const stylepercentage = {
-    strokecircle: 8.8,
+    strokecircle: 6.8,
     strokecirclebg: 10.8,
     colors: color
   };
   return (
-    <div>
+    <Fragment>
       <Percentagecircle
-        radius={30}
+        radius={40}
         value={percentage / 100}
         settingsstyle={stylepercentage}
       >
         {percentage}%
       </Percentagecircle>
       <p>UserScore</p>
-    </div>
+    </Fragment>
   );
 };
 

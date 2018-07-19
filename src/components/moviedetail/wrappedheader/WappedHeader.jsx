@@ -4,14 +4,7 @@ import styled from 'styled-components';
 import GridContainer from '../../../common/components/grid/girdcontainer';
 import Grid from '@material-ui/core/Grid';
 import ImageComponent from '../../../common/components/images/ImageComponent';
-
-import {
-  RenderHeaderTitle,
-  RenderOverview,
-  RenderPercentagecircle,
-  RenderPlayTrailer,
-  DialogVideo
-} from './components';
+import RanderBody from './components/RanderBody';
 
 const MovieImages = styled.div`
   background-image: url(${props => props.img});
@@ -43,38 +36,8 @@ const BobyHeaderStyle = styled.div`
 `;
 
 class WappedHeader extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showdialog: false
-    };
-
-    this._handleShow = this._handleShow.bind(this);
-    this._handleClose = this._handleClose.bind(this);
-  }
-
-  _handleShow = () => {
-    console.log('test');
-    this.setState({
-      showdialog: true
-    });
-  };
-
-  _handleClose = () => {
-    this.setState({
-      showdialog: false
-    });
-  };
-
   render() {
-    const {
-      imgposter,
-      imgbackdrop,
-      moviedetail,
-      movievideos
-    } = this.props.dataapi;
-    const { results } = movievideos;
-    const { showdialog } = this.state;
+    const { imgposter, imgbackdrop, moviedetail } = this.props.dataapi;
     return (
       <MovieImages img={imgbackdrop}>
         <RadialMovieImages>
@@ -91,32 +54,14 @@ class WappedHeader extends PureComponent {
                   alignItems="center"
                   justify="center"
                 >
-                  <Grid item xs={12}>
-                    <RenderHeaderTitle {...moviedetail} />
-                  </Grid>
-                  <Grid item xs={3}>
-                    <RenderPercentagecircle {...moviedetail} />
-                  </Grid>
-                  <Grid item xs={8}>
-                    <RenderPlayTrailer
-                      _handleShow={this._handleShow}
-                      {...this.props.classes}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <RenderOverview {...moviedetail} />
-                  </Grid>
+                  <RanderBody
+                    moviedetail={moviedetail}
+                    classes={this.props.classes}
+                  />
                 </GridContainer>
               </BobyHeaderStyle>
             </Grid>
           </GridContainer>
-          {showdialog && (
-            <DialogVideo
-              _handleClose={this._handleClose}
-              showdialog={showdialog}
-              videodata={results[1]}
-            />
-          )}
         </RadialMovieImages>
       </MovieImages>
     );

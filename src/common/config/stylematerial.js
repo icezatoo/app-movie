@@ -20,7 +20,14 @@ const stylesmaterial = theme => ({
     marginLeft: theme.spacing.unit
   },
   iconSmall: {
-    fontSize: 20,
+    fontSize: 20
+  },
+  card: {
+    maxWidth: 250
+  },
+  media: {
+    height: 0,
+    paddingTop: '90.25%' // 16:9
   }
 });
 

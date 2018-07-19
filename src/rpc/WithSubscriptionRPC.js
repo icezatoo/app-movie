@@ -27,6 +27,14 @@ class WithSubscriptionRPC extends React.Component {
       });
   }
 
+  componentWillUnmount() {
+    this.setState({
+      data: null,
+      errors: null,
+      loader: false
+    });
+  }
+
   render() {
     return this.props.render(this.state);
   }

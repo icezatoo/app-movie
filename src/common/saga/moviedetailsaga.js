@@ -16,9 +16,18 @@ export default function* CallApiMoviedetail({ payload }) {
       ).then(response => response.data);
     });
 
+    const credits = yield call(() => {
+      return Axios.get(
+        `/movie/${payload}/credits?api_key=${api_Key}&language=en-US`
+      ).then(response => response.data);
+    });
+
     const mapdata = {
-      moviedetail: { ...datadetail },
-      movievideos: { ...videos }
+      moviedetail: {
+        ...datadetail,
+        videoslist: [...videos.results],
+        credit: [...credits.cast]
+      }
     };
     yield put(MoviedetailAction.requestMoviedetailSuccess(mapdata));
   } catch (error) {

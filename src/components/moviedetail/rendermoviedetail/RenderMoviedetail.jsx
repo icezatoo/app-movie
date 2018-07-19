@@ -3,7 +3,7 @@ import GridContainer from '../../../common/components/grid/girdcontainer';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import WappedHeader from '../wrappedheader/WappedHeader';
-
+import Wappedbody from '../wrappedboby/Wappedbody';
 class RenderMoviedetail extends Component {
   render() {
     const { classes, dataapi } = this.props;
@@ -16,14 +16,7 @@ class RenderMoviedetail extends Component {
           <Grid container spacing={16}>
             <Grid item xs>
               <Paper className={classes.paper}>
-                <div>
-                  <p>test</p>
-                </div>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
+                <Wappedbody classes={classes} dataapi={dataapi} />
               </Paper>
             </Grid>
           </Grid>

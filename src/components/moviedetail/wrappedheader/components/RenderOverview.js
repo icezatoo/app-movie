@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import HeaderTitle from '../../headertitle/Headertitle';
 import Typography from '@material-ui/core/Typography';
 
 const RenderOverview = ({ overview }) => (
-  <div>
+  <Fragment>
     <HeaderTitle size="1.3" height="2.0" weight="600">
       Overview
     </HeaderTitle>
     <Typography style={{ color: 'white' }}>{overview}</Typography>
-  </div>
+  </Fragment>
 );
 
 export default RenderOverview;

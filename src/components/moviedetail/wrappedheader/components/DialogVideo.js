@@ -4,12 +4,12 @@ import Dialog from '@material-ui/core/Dialog';
 import ReactPlayer from 'react-player';
 
 const DialogVideo = props => {
-  const { showdialog, _handleClose, videodata } = props;
+  const { showdialog, _dialogClose, videodata } = props;
   const pathvideo = 'https://www.youtube.com/watch?v=' + videodata.key;
   return (
     <Dialog
       open={showdialog}
-      onClose={_handleClose}
+      onClose={_dialogClose}
       maxWidth={false}
       aria-labelledby="responsive-dialog-title"
     >
