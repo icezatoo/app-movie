@@ -4,7 +4,6 @@ import GridContainer from '../../../common/components/grid/girdcontainer';
 import Grid from '@material-ui/core/Grid';
 import CardItem from './components/CardItem';
 import HeaderTitle from '../headertitle/Headertitle';
-import PropTypes from 'prop-types';
 
 class Wappedbody extends Component {
   _randerListCard = (moviedetail, classes, images) => {
@@ -17,6 +16,13 @@ class Wappedbody extends Component {
   };
 
   render() {
+    const configstyleheader = {
+      size: 2.3,
+      height: 2.0,
+      weight: 600,
+      color: 'black',
+      float: 'left'
+    };
     const { classes } = this.props;
     const { moviedetail, images } = this.props.dataapi;
     return (
@@ -24,13 +30,7 @@ class Wappedbody extends Component {
         <Grid item xs={8}>
           <GridContainer spacing={8} alignItems="center" justify="center">
             <Grid item xs={12}>
-              <HeaderTitle
-                size="2.3"
-                height="2.0"
-                weight="600"
-                float="left"
-                color="black"
-              >
+              <HeaderTitle configstyleheader={configstyleheader}>
                 Top Billed Cast
               </HeaderTitle>
             </Grid>
@@ -41,18 +41,9 @@ class Wappedbody extends Component {
             </Grid>
           </GridContainer>
         </Grid>
-
-        <Grid item xs={12}>
-          <p>test2</p>
-        </Grid>
-        <Grid item xs={12}>
-          <p>test3</p>
-        </Grid>
       </GridContainer>
     );
   }
 }
-
-Wappedbody.propTypes = {};
 
 export default Wappedbody;

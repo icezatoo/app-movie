@@ -16,9 +16,7 @@ const CardItem = ({ classes, character, name, baseurl, profile_path }) => (
           title={name}
         />
         <CardContent>
-          <HeaderTitle size="1.2" height="1.0" weight="600" color="black">
-            {name}
-          </HeaderTitle>
+          <HeaderTitle>{name}</HeaderTitle>
           <Typography component="p">{character}</Typography>
         </CardContent>
       </Card>

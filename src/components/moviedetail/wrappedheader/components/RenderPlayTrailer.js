@@ -1,52 +1,50 @@
 // @ts-nocheck
-import React, { Fragment, PureComponent } from 'react';
-import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
-import classNames from 'classnames';
+import React, { Fragment } from 'react';
 import DialogVideo from './DialogVideo';
+import { withStateHandlers, pure, compose } from 'recompose';
+import styled from 'styled-components';
 
-class RenderPlayTrailer extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showdialogs: false
-    };
+const Button = styled.button`
+  background: white;
+  color: black;
+  font-size: 1em;
+  padding: 0.25em 1em;
+  border-radius: 3px;
+  cursor: pointer;
+`;
+
+const enhance = withStateHandlers(
+  {
+    displaydialog: false
+  },
+  {
+    _showDialog: ({ displaydialog }) => () => ({ displaydialog: true }),
+    _dialogClose: ({ displaydialog }) => () => ({ displaydialog: false })
   }
+);
 
-  _showDialog = () => {
-    this.setState({
-      showdialogs: true
-    });
-  };
+const RenderPlayTrailer = ({
+  videoslist,
+  displaydialog,
+  _dialogClose,
+  _showDialog
+}) => (
+  <Fragment>
+    <Button onClick={_showDialog}>
+      <span style={{ margin: 10 }}>
+        <i className="fas fa-play" />
+      </span>
+      Play Trailer
+    </Button>
+    <DialogVideo
+      showdialog={displaydialog}
+      videodata={videoslist[0]}
+      _dialogClose={_dialogClose}
+    />
+  </Fragment>
+);
 
-  _dialogClose = () => {
-    this.setState({
-      showdialogs: false
-    });
-  };
-
-  render() {
-    const { button, leftIcon, iconSmall, moviedetail } = this.props;
-    const { showdialogs } = this.state;
-    return (
-      <Fragment>
-        <Button
-          variant="outlined"
-          onClick={this._showDialog}
-          className={button}
-          style={{ color: 'white' }}
-        >
-          <Icon className={classNames(leftIcon, iconSmall)}>play_arrow</Icon>
-          <p>Play Trailer</p>
-        </Button>
-        <DialogVideo
-          showdialog={showdialogs}
-          videodata={moviedetail.videoslist[0]}
-          _dialogClose={this._dialogClose}
-        />
-      </Fragment>
-    );
-  }
-}
-
-export default RenderPlayTrailer;
+export default compose(
+  pure,
+  enhance
+)(RenderPlayTrailer);

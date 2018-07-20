@@ -8,7 +8,7 @@ import {
 } from './index';
 
 const RanderBody = props => {
-  const { moviedetail, classes } = props;
+  const { moviedetail } = props;
   return (
     <Fragment>
       <Grid item xs={12}>
@@ -18,7 +18,7 @@ const RanderBody = props => {
         <RenderPercentagecircle {...moviedetail} />
       </Grid>
       <Grid item xs={8}>
-        <RenderPlayTrailer {...classes} moviedetail={moviedetail} />
+        <RenderPlayTrailer {...moviedetail} />
       </Grid>
       <Grid item xs={12}>
         <RenderOverview {...moviedetail} />

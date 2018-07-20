@@ -8,6 +8,7 @@
     "animated": "^0.2.2",
     "axios": "^0.18.0",
     "bulma": "^0.7.1",
+    "img-2": "0.0.4",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-player": "^1.6.4",

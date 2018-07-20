@@ -5,7 +5,7 @@ import GridContainer from '../../../common/components/grid/girdcontainer';
 import Grid from '@material-ui/core/Grid';
 import ImageComponent from '../../../common/components/images/ImageComponent';
 import RanderBody from './components/RanderBody';
-
+// https://img.gs/blvznglhbp/full/http://example.com/kitten.jpg
 const MovieImages = styled.div`
   background-image: url(${props => props.img});
   background-repeat: no-repeat;
