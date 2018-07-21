@@ -4,7 +4,8 @@ import {
   RenderHeaderTitle,
   RenderOverview,
   RenderPercentagecircle,
-  RenderPlayTrailer
+  RenderPlayTrailer,
+  RenderGenres
 } from './index';
 
 const RanderBody = props => {
@@ -22,6 +23,9 @@ const RanderBody = props => {
       </Grid>
       <Grid item xs={12}>
         <RenderOverview {...moviedetail} />
+      </Grid>
+      <Grid item xs={12}>
+        <RenderGenres {...moviedetail} />
       </Grid>
     </Fragment>
   );

@@ -28,21 +28,27 @@ const RenderPlayTrailer = ({
   displaydialog,
   _dialogClose,
   _showDialog
-}) => (
-  <Fragment>
-    <Button onClick={_showDialog}>
-      <span style={{ margin: 10 }}>
-        <i className="fas fa-play" />
-      </span>
-      Play Trailer
-    </Button>
-    <DialogVideo
-      showdialog={displaydialog}
-      videodata={videoslist[0]}
-      _dialogClose={_dialogClose}
-    />
-  </Fragment>
-);
+}) => {
+  const viedofilter = videoslist
+    ? videoslist.filter(val => val.type === 'Trailer' && val.site === 'YouTube')
+    : null;
+
+  return (
+    <Fragment>
+      <Button onClick={_showDialog}>
+        <span style={{ margin: 10 }}>
+          <i className="fas fa-play" />
+        </span>
+        Play Trailer
+      </Button>
+      <DialogVideo
+        showdialog={displaydialog}
+        videodata={viedofilter[0]}
+        _dialogClose={_dialogClose}
+      />
+    </Fragment>
+  );
+};
 
 export default compose(
   pure,

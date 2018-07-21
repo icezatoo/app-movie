@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import CircularLoader from '../../../../common/components/loader/CircularLoader';
+import HeaderTitle from '../../headertitle/Headertitle';
 import { compose, branch, renderComponent, setPropTypes } from 'recompose';
 
 const Modal = styled.div`
@@ -37,6 +38,9 @@ const ModalContent = styled.div`
   @media only screen and (min-width: 1200px) {
     width: 55%;
   }
+  @media only screen and (min-width: 1324px) {
+    width: 40%;
+  }
   @media only screen and (min-width: 1900px) {
     width: 40%;
   }
@@ -62,16 +66,40 @@ const VideoContainer = styled.div`
   align-items: center;
 `;
 
+const VideoHeader = styled.div`
+  display: flex;
+`;
+const VideoTitle = styled.div`
+  width: 100%;
+`;
+
+const Videoclose = styled.div`
+  width: 0%;
+`;
+
 const DialogVideo = props => {
   const { showdialog, _dialogClose, videodata } = props;
   const pathvideo = 'https://www.youtube.com/watch?v=' + videodata.key;
+  const configstyleheader = {
+    size: 1.3,
+    height: 2.0,
+    weight: 600,
+    color: 'while'
+  };
   return (
     <Modal showdialog={showdialog}>
       {showdialog && (
         <ModalContent>
-          <div>
-            <ModalClose onClick={_dialogClose}>&times;</ModalClose>
-          </div>
+          <VideoHeader>
+            <VideoTitle>
+              <HeaderTitle configstyleheader={configstyleheader}>
+                {videodata.name}
+              </HeaderTitle>
+            </VideoTitle>
+            <Videoclose>
+              <ModalClose onClick={_dialogClose}>&times;</ModalClose>
+            </Videoclose>
+          </VideoHeader>
           <VideoContainer>
             <ReactPlayer url={pathvideo} playing controls />
           </VideoContainer>

@@ -2,28 +2,35 @@
 import React, { Component } from 'react';
 import GridContainer from '../../../common/components/grid/girdcontainer';
 import Grid from '@material-ui/core/Grid';
-import CardItem from './components/CardItem';
+import CardList from './components/CardList';
 import HeaderTitle from '../headertitle/Headertitle';
-
+import styled from 'styled-components';
+const PeopleList = styled.ol`
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+  display: flex;
+`;
 class Wappedbody extends Component {
-  _randerListCard = (moviedetail, classes, images) => {
+  _randerListCard = (moviedetail, images) => {
     const { credit } = moviedetail;
-    const pathurl = images.base_url + images.profile_sizes[1];
     const listcredit = credit.filter((val, index) => index < 5);
-    return listcredit.map(val => (
-      <CardItem key={val.id} classes={classes} baseurl={pathurl} {...val} />
-    ));
+    return (
+      <PeopleList >
+        {listcredit.map(val => <CardList key={val.id} images={images} credit={val} />)}
+      </PeopleList>
+    );
   };
 
   render() {
     const configstyleheader = {
-      size: 2.3,
+      size: 1.3,
       height: 2.0,
       weight: 600,
       color: 'black',
       float: 'left'
     };
-    const { classes } = this.props;
     const { moviedetail, images } = this.props.dataapi;
     return (
       <GridContainer spacing={16} alignItems="center" justify="center">
@@ -34,10 +41,8 @@ class Wappedbody extends Component {
                 Top Billed Cast
               </HeaderTitle>
             </Grid>
-            <Grid item xs={12}>
-              <GridContainer spacing={8} alignItems="center" justify="center">
-                {this._randerListCard(moviedetail, classes, images)}
-              </GridContainer>
+            <Grid item xs={10}>
+              {this._randerListCard(moviedetail, images)}
             </Grid>
           </GridContainer>
         </Grid>
