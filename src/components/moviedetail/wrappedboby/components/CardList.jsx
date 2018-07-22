@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import ImageComponent from '../../../../common/components/images/ImageComponent';
 import styled from 'styled-components';
+import noimg from '../../../../assets/images/noimage.jpg';
 
 const Card = styled.li`
   border: 1px solid #e3e3e3;
@@ -30,7 +31,9 @@ const Cardimg = styled.div`
 `;
 
 const CardimgItem = ({ images, profile_path, name }) => {
-  const pathimg = images.base_url + images.profile_sizes[1] + profile_path;
+  const pathimg = profile_path
+    ? images.base_url + images.profile_sizes[1] + profile_path
+    : noimg;
   return (
     <Cardimg>
       <ImageComponent src={pathimg} alt={name} />
