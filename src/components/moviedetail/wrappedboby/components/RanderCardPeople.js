@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import CardList from './CardList';
+import HeaderTitle from '../../headertitle/Headertitle';
 
 const PeopleList = styled.ol`
   list-style-type: none;
@@ -23,10 +24,20 @@ const _randerListCard = (credit, pathimg) => {
   );
 };
 
-const RanderCardPeople = ({ credit, base_url, profile_sizes }) => {
+const RanderCardPeople = ({
+  credit,
+  base_url,
+  profile_sizes,
+  configstyleheader
+}) => {
   const pathimg = base_url + profile_sizes[1];
   return (
     <Fragment>
+      <Grid item xs={12}>
+        <HeaderTitle configstyleheader={configstyleheader}>
+          Top Billed Cast
+        </HeaderTitle>
+      </Grid>
       <Grid item xs={10}>
         {_randerListCard(credit, pathimg)}
         <hr />
