@@ -38,7 +38,7 @@ const ModalContent = styled.div`
   @media only screen and (min-width: 1200px) {
     width: 55%;
   }
-  @media only screen and (min-width: 1324px) {
+  @media only screen and (min-width: 1500px) {
     width: 40%;
   }
   @media only screen and (min-width: 1900px) {

@@ -1,27 +1,26 @@
 import React from 'react';
-import menudata from '../../../../common/config/menumadia';
-import styled from 'styled-components';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import PhotoIcon from '@material-ui/icons/Photo';
+import VideocamIcon from '@material-ui/icons/Videocam';
 
-const MenuList = styled.ul`
-  width: 30%;
-  box-sizing: border-box;
-`;
-
-const Menuitem = styled.li`
-  display: inline-block;
-  margin-right: 24px;
-  padding-bottom: 5px;
-  font-size: 1.1em;
-  line-height: 1em;
-  box-sizing: border-box;
-`;
-
-const MenuMedia = props => {
+const MenuMedia = ({ handleChange, selectmoviemedia }) => {
+  console.log(selectmoviemedia);
   return (
-    <MenuList>
-      {menudata &&
-        menudata.map(val => <Menuitem key={val.id}>{val.name}</Menuitem>)}
-    </MenuList>
+    <Paper style={{ width: 500 }}>
+      <Tabs
+        value={selectmoviemedia}
+        onChange={handleChange}
+        fullWidth
+        indicatorColor="secondary"
+        textColor="secondary"
+      >
+        <Tab icon={<VideocamIcon />} label="VIDEO" />
+        <Tab icon={<PhotoIcon />} label="BACKDROPS" />
+        <Tab icon={<PhotoIcon />} label="POSTERS" />
+      </Tabs>
+    </Paper>
   );
 };
 

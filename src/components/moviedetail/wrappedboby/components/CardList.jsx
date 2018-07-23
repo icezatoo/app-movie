@@ -10,6 +10,7 @@ const Card = styled.li`
   background-color: #fff;
   box-sizing: border-box;
   margin-right: 10px;
+  margin-bottom: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 `;
 
@@ -30,10 +31,8 @@ const Cardimg = styled.div`
   display: block;
 `;
 
-const CardimgItem = ({ images, profile_path, name }) => {
-  const pathimg = profile_path
-    ? images.base_url + images.profile_sizes[1] + profile_path
-    : noimg;
+const CardimgItem = ({ path, profile_path, name }) => {
+  const pathimg = profile_path ? path + profile_path : noimg;
   return (
     <Cardimg>
       <ImageComponent src={pathimg} alt={name} />
@@ -48,17 +47,17 @@ const CardPeople = ({ name, character }) => (
   </Fragment>
 );
 
-const CardItem = ({ credit, images }) => (
+const CardItem = ({ credit, path }) => (
   <Card>
-    <CardimgItem {...credit} images={images} />
+    <CardimgItem {...credit} path={path} />
     <CardPeople {...credit} />
   </Card>
 );
 
-const CardList = ({ credit, images }) => {
+const CardList = ({ credit, path }) => {
   return (
     <Fragment>
-      <CardItem credit={credit} images={images} />
+      <CardItem credit={credit} path={path} />
     </Fragment>
   );
 };
