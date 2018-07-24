@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Fragment } from 'react';
 import ImageComponent from '../../../../common/components/images/ImageComponent';
 import styled from 'styled-components';

@@ -1,8 +1,8 @@
 // @ts-nocheck
 import React, { Fragment } from 'react';
-import DialogVideo from './DialogVideo';
 import { withStateHandlers, pure, compose } from 'recompose';
 import styled from 'styled-components';
+import DialogVideo from './DialogVideo';
 
 const Button = styled.button`
   background: white;
@@ -15,20 +15,15 @@ const Button = styled.button`
 
 const enhance = withStateHandlers(
   {
-    displaydialog: false
+    displaydialog: false,
   },
   {
     _showDialog: ({ displaydialog }) => () => ({ displaydialog: true }),
-    _dialogClose: ({ displaydialog }) => () => ({ displaydialog: false })
+    _dialogClose: ({ displaydialog }) => () => ({ displaydialog: false }),
   }
 );
 
-const RenderPlayTrailer = ({
-  videoslist,
-  displaydialog,
-  _dialogClose,
-  _showDialog
-}) => {
+const RenderPlayTrailer = ({ videoslist, displaydialog, _dialogClose, _showDialog }) => {
   const viedofilter = videoslist
     ? videoslist.filter(val => val.type === 'Trailer' && val.site === 'YouTube')
     : null;

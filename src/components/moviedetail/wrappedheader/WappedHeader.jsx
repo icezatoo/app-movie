@@ -1,8 +1,8 @@
 // @ts-nocheck
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import GridContainer from '../../../common/components/grid/girdcontainer';
 import Grid from '@material-ui/core/Grid';
+import GridContainer from '../../../common/components/grid/girdcontainer';
 import ImageComponent from '../../../common/components/images/ImageComponent';
 import RanderBody from './components/RanderBody';
 // https://img.gs/blvznglhbp/full/http://example.com/kitten.jpg
@@ -49,15 +49,8 @@ class WappedHeader extends PureComponent {
             </Grid>
             <Grid item xs={5}>
               <BobyHeaderStyle>
-                <GridContainer
-                  spacing={16}
-                  alignItems="center"
-                  justify="center"
-                >
-                  <RanderBody
-                    moviedetail={moviedetail}
-                    classes={this.props.classes}
-                  />
+                <GridContainer spacing={16} alignItems="center" justify="center">
+                  <RanderBody moviedetail={moviedetail} />
                 </GridContainer>
               </BobyHeaderStyle>
             </Grid>

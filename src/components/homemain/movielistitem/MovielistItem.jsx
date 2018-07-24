@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
-import WithSubscriptionRPC from '../../../rpc/WithSubscriptionRPC';
 import styled from 'styled-components';
+import WithSubscriptionRPC from '../../../rpc/WithSubscriptionRPC';
 import Sliderview from '../slider/Sliderview';
 import CircularLoader from '../../../common/components/loader/CircularLoader';
+
 const HeaderContainer = styled.h1`
   text-align: left;
   color: black;
@@ -13,12 +14,18 @@ const HeaderContainer = styled.h1`
 const SliderViewContainer = styled.div`
   height: 200px;
 `;
+
+const MovielistContainer = styled.div`
+  margin-left: 25px;
+  margin-right: 25px;
+`;
+
 class MovielistItem extends PureComponent {
   render() {
     const { header, apipath } = this.props.viewdata;
     const { images } = this.props.configuration;
     return (
-      <div>
+      <MovielistContainer>
         <HeaderContainer> {header} </HeaderContainer>
         <ul>
           <WithSubscriptionRPC
@@ -36,7 +43,7 @@ class MovielistItem extends PureComponent {
             )}
           />
         </ul>
-      </div>
+      </MovielistContainer>
     );
   }
 }

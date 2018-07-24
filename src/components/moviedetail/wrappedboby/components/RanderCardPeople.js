@@ -13,33 +13,24 @@ const PeopleList = styled.ol`
   flex-wrap: wrap;
 `;
 
-const _randerListCard = (credit, pathimg) => {
+const randerListCard = (credit, pathimg) => {
   const listcredit = credit.filter((val, index) => index < 12);
   return (
     <PeopleList>
-      {listcredit.map(val => (
-        <CardList key={val.id} path={pathimg} credit={val} />
-      ))}
+      {listcredit.map(val => <CardList key={val.id} path={pathimg} credit={val} />)}
     </PeopleList>
   );
 };
 
-const RanderCardPeople = ({
-  credit,
-  base_url,
-  profile_sizes,
-  configstyleheader
-}) => {
+const RanderCardPeople = ({ credit, base_url, profile_sizes, configstyleheader }) => {
   const pathimg = base_url + profile_sizes[1];
   return (
     <Fragment>
       <Grid item xs={12}>
-        <HeaderTitle configstyleheader={configstyleheader}>
-          Top Billed Cast
-        </HeaderTitle>
+        <HeaderTitle configstyleheader={configstyleheader}>Top Billed Cast</HeaderTitle>
       </Grid>
       <Grid item xs={10}>
-        {_randerListCard(credit, pathimg)}
+        {randerListCard(credit, pathimg)}
         <hr />
       </Grid>
     </Fragment>

@@ -2,58 +2,54 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
 import { stylesmaterial } from '../../common/config/stylematerial';
 import RenderMoviedetail from '../../components/moviedetail/rendermoviedetail/RenderMoviedetail';
 import * as MovieDetailActions from '../../common/actions/moviedetails/moviedetailaction';
 import CircularLoader from '../../common/components/loader/CircularLoader';
-import styled from 'styled-components';
+
 const MovieContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
+  z-index: 2;
+  min-height: 100vh;
   padding-top: 60px;
 `;
 
 class Moivedetail extends Component {
   componentDidMount() {
-    const params = this.props.match.params.movieId;
-    this.props.fetchdatadetail(params);
+    const { fetchdatadetail, match } = this.props;
+    const params = match.params.movieId;
+    fetchdatadetail(params);
   }
 
-  _mappathImages = (images, sizes, mode) => mappathsize => {
-    return images.base_url + mappathsize[sizes] + mode;
-  };
+  mappathImages = (images, sizes, mode) => mappathsize =>
+    images.base_url + mappathsize[sizes] + mode;
 
-  _mapDataService = () => {
-    if (this.props.datamovie && this.props.dataconfig) {
-      const { datamovie, dataconfig } = this.props;
+  mapDataService = () => {
+    const { datamovie, dataconfig } = this.props;
+    if (datamovie && dataconfig) {
       const { backdrop_path, poster_path } = datamovie.moviedetail;
       const { images } = dataconfig;
       const datamap = {
         ...datamovie,
         ...dataconfig,
-        imgbackdrop: this._mappathImages(images, 3, backdrop_path)(
-          images.backdrop_sizes
-        ),
-        imgposter: this._mappathImages(images, 3, poster_path)(
-          images.poster_sizes
-        )
+        imgbackdrop: this.mappathImages(images, 3, backdrop_path)(images.backdrop_sizes),
+        imgposter: this.mappathImages(images, 3, poster_path)(images.poster_sizes),
       };
       return datamap;
     }
+    return null;
   };
 
   render() {
-    const { loading } = this.props;
-    const mapdatamovie = this._mapDataService();
+    const { loading, classes } = this.props;
+    const mapdatamovie = this.mapDataService();
     return (
       <MovieContainer>
         {loading ? (
-          <RenderMoviedetail
-            dataapi={mapdatamovie}
-            classes={this.props.classes}
-          />
+          <RenderMoviedetail dataapi={mapdatamovie} classes={classes} />
         ) : (
           <CircularLoader />
         )}
@@ -62,14 +58,13 @@ class Moivedetail extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   datamovie: state.moviedetail.datamovie,
   dataconfig: state.movieconfig.dataconfig,
-  loading: state.moviedetail.loading
+  loading: state.moviedetail.loading,
 });
 const mapDispatchToProps = dispatch => ({
-  fetchdatadetail: movieid =>
-    dispatch(MovieDetailActions.fetchdatadetail(movieid))
+  fetchdatadetail: movieid => dispatch(MovieDetailActions.fetchdatadetail(movieid)),
 });
 
 export default compose(

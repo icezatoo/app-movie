@@ -3,3 +3,10 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.slick-prev:before {
+  color: #070707;
+}
+.slick-next:before {
+  color: #070707;
+}

@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-import GridContainer from '../../../common/components/grid/girdcontainer';
+// @ts-nocheck
+import React, { PureComponent } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import GridContainer from '../../../common/components/grid/girdcontainer';
 import WappedHeader from '../wrappedheader/WappedHeader';
 import Wappedbody from '../wrappedboby/Wappedbody';
-class RenderMoviedetail extends Component {
+
+class RenderMoviedetail extends PureComponent {
   render() {
     const { classes, dataapi } = this.props;
     return (
@@ -25,7 +27,5 @@ class RenderMoviedetail extends Component {
     );
   }
 }
-
-RenderMoviedetail.propTypes = {};
 
 export default RenderMoviedetail;

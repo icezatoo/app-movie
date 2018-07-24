@@ -1,8 +1,9 @@
 import * as MovieconfigAction from '../actions/movieconfig/movieconfigaction';
+
 const initialState = {
   dataconfig: null,
   loading: false,
-  error: null
+  error: null,
 };
 export const movieconfigReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -10,21 +11,21 @@ export const movieconfigReducer = (state = initialState, action) => {
       return {
         dataconfig: null,
         loading: true,
-        error: false
+        error: false,
       };
     case MovieconfigAction.REQUESTED_MOVIECONFIG_SUCCESS:
       return {
         ...state,
         dataconfig: action.movieconfig,
         loading: false,
-        error: null
+        error: null,
       };
     case MovieconfigAction.REQUESTED_MOVIECONFIG_ERROR:
       return {
         ...state,
         error: action.error,
         loading: false,
-        dataconfig: null
+        dataconfig: null,
       };
     default:
       return state;

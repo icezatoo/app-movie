@@ -5,7 +5,7 @@ import {
   RenderOverview,
   RenderPercentagecircle,
   RenderPlayTrailer,
-  RenderGenres
+  RenderGenres,
 } from './index';
 
 const RanderBody = props => {

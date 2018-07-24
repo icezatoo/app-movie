@@ -1,8 +1,9 @@
 import * as MoviedetailActions from '../actions/moviedetails/moviedetailaction';
+
 const Initstate = {
   loading: false,
   error: null,
-  datamovie: null
+  datamovie: null,
 };
 export const moviedetailReducer = (state = Initstate, action) => {
   switch (action.type) {
@@ -13,7 +14,7 @@ export const moviedetailReducer = (state = Initstate, action) => {
         ...state,
         error: null,
         loading: true,
-        datamovie: action.moviedetail
+        datamovie: action.moviedetail,
       };
     case MoviedetailActions.REQUESTED_MOVIEDETAIL_ERROR:
       return { ...state, loading: false, datamovie: null, error: null };

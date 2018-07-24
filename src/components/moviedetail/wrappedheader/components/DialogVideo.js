@@ -3,9 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
+import { compose, branch, renderComponent, setPropTypes } from 'recompose';
 import CircularLoader from '../../../../common/components/loader/CircularLoader';
 import HeaderTitle from '../../headertitle/Headertitle';
-import { compose, branch, renderComponent, setPropTypes } from 'recompose';
 
 const Modal = styled.div`
   display: ${props => (props.showdialog ? 'block' : 'none')};
@@ -79,12 +79,12 @@ const Videoclose = styled.div`
 
 const DialogVideo = props => {
   const { showdialog, _dialogClose, videodata } = props;
-  const pathvideo = 'https://www.youtube.com/watch?v=' + videodata.key;
+  const pathvideo = `https://www.youtube.com/watch?v=${videodata.key}`;
   const configstyleheader = {
     size: 1.3,
     height: 2.0,
     weight: 600,
-    color: 'while'
+    color: 'while',
   };
   return (
     <Modal showdialog={showdialog}>
@@ -92,9 +92,7 @@ const DialogVideo = props => {
         <ModalContent>
           <VideoHeader>
             <VideoTitle>
-              <HeaderTitle configstyleheader={configstyleheader}>
-                {videodata.name}
-              </HeaderTitle>
+              <HeaderTitle configstyleheader={configstyleheader}>{videodata.name}</HeaderTitle>
             </VideoTitle>
             <Videoclose>
               <ModalClose onClick={_dialogClose}>&times;</ModalClose>
@@ -112,11 +110,10 @@ const DialogVideo = props => {
 const withPropTypes = setPropTypes({
   showdialog: PropTypes.bool.isRequired,
   _dialogClose: PropTypes.func.isRequired,
-  videodata: PropTypes.object.isRequired
+  videodata: PropTypes.object.isRequired,
 });
 
-const spinnerWhileLoading = isLoading =>
-  branch(isLoading, renderComponent(CircularLoader));
+const spinnerWhileLoading = isLoading => branch(isLoading, renderComponent(CircularLoader));
 
 const enhance = spinnerWhileLoading(props => !props.videodata);
 
