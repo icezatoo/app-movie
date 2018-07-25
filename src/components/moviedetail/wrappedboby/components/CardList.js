@@ -1,7 +1,9 @@
 // @ts-nocheck
 import React, { Fragment } from 'react';
-import ImageComponent from '../../../../common/components/images/ImageComponent';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { compose, setPropTypes, pure } from 'recompose';
+import ImageComponent from '../../../../common/components/images/ImageComponent';
 import noimg from '../../../../assets/images/noimage.jpg';
 
 const Card = styled.li`
@@ -55,12 +57,18 @@ const CardItem = ({ credit, path }) => (
   </Card>
 );
 
-const CardList = ({ credit, path }) => {
-  return (
-    <Fragment>
-      <CardItem credit={credit} path={path} />
-    </Fragment>
-  );
-};
+const CardList = ({ credit, path }) => (
+  <Fragment>
+    <CardItem credit={credit} path={path} />
+  </Fragment>
+);
 
-export default CardList;
+const withPropTypes = setPropTypes({
+  credit: PropTypes.object.isRequired,
+  path: PropTypes.string.isRequired,
+});
+
+export default compose(
+  pure,
+  withPropTypes
+)(CardList);

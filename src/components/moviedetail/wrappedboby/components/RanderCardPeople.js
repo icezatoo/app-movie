@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
+import { compose, setPropTypes, pure, branch, renderNothing } from 'recompose';
 import CardList from './CardList';
 import HeaderTitle from '../../headertitle/Headertitle';
 
@@ -37,4 +39,18 @@ const RanderCardPeople = ({ credit, base_url, profile_sizes, configstyleheader }
   );
 };
 
-export default RanderCardPeople;
+const withPropTypes = setPropTypes({
+  credit: PropTypes.array.isRequired,
+  base_url: PropTypes.string.isRequired,
+  profile_sizes: PropTypes.array.isRequired,
+  configstyleheader: PropTypes.object.isRequired,
+});
+
+const hideIfNoData = hasNoData => branch(hasNoData, renderNothing);
+const enhance = hideIfNoData(props => !props.credit);
+
+export default compose(
+  pure,
+  withPropTypes,
+  enhance
+)(RanderCardPeople);

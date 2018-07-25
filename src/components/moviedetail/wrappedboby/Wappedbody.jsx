@@ -1,6 +1,7 @@
 // @ts-nocheck
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import Grid from '@material-ui/core/Grid';
+import LazyLoad from 'react-lazyload';
 import GridContainer from '../../../common/components/grid/girdcontainer';
 import RanderCardPeople from './components/RanderCardPeople';
 import Randermedia from './components/Randermedia';
@@ -14,23 +15,16 @@ class Wappedbody extends PureComponent {
       color: 'black',
       float: 'left',
     };
-
     const { dataapi } = this.props;
     const { moviedetail, images } = dataapi;
     return (
       <GridContainer spacing={16} alignItems="center" justify="center">
         <Grid item xs={8}>
           <GridContainer spacing={8} alignItems="center" justify="center">
-            <Fragment>
-              <RanderCardPeople
-                configstyleheader={configstyleheader}
-                {...moviedetail}
-                {...images}
-              />
-            </Fragment>
-            <Fragment>
+            <RanderCardPeople configstyleheader={configstyleheader} {...moviedetail} {...images} />
+            <LazyLoad height={500}>
               <Randermedia configstyleheader={configstyleheader} {...moviedetail} />
-            </Fragment>
+            </LazyLoad>
           </GridContainer>
         </Grid>
       </GridContainer>

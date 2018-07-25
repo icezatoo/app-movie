@@ -5,31 +5,21 @@ import PropTypes from 'prop-types';
 import { compose, defaultProps, setPropTypes } from 'recompose';
 
 const HeaderStyle = styled.h1`
-  font-size: ${props => props.size}em;
-  line-height: ${props => props.height}em;
-  font-weight: ${props => props.weight};
-  float: ${props => props.float};
-  color: ${props => props.color};
+  font-size: ${props => props.config.size}em;
+  line-height: ${props => props.config.height}em;
+  font-weight: ${props => props.config.weight};
+  float: ${props => props.config.float};
+  color: ${props => props.config.color};
 `;
 
 const HeaderTitle = props => {
   const { children, configstyleheader } = props;
-  return (
-    <HeaderStyle
-      size={configstyleheader.size}
-      height={configstyleheader.height}
-      weight={configstyleheader.weight}
-      float={configstyleheader.float}
-      color={configstyleheader.color}
-    >
-      {children}
-    </HeaderStyle>
-  );
+  return <HeaderStyle config={configstyleheader}>{children}</HeaderStyle>;
 };
 
 // Enhancers
 const withPropTypes = setPropTypes({
-  configstyleheader: PropTypes.object.isRequired
+  configstyleheader: PropTypes.object.isRequired,
 });
 const withDefaultProps = defaultProps({
   configstyleheader: {
@@ -37,8 +27,8 @@ const withDefaultProps = defaultProps({
     weight: 700,
     height: 2.0,
     float: 'none',
-    color: 'black'
-  }
+    color: 'black',
+  },
 });
 
 export default compose(

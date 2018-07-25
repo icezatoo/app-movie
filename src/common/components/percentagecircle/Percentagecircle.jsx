@@ -24,13 +24,9 @@ const Percentage = styled.text`
 `;
 
 const Percentagecircle = ({ radius, value = 1, children, settingsstyle }) => {
-  const {
-    strokecircle = 8.8,
-    strokecirclebg = 10.8,
-    colors = 'orange'
-  } = settingsstyle;
+  const { strokecircle = 8.8, strokecirclebg = 10.8, colors = 'orange' } = settingsstyle;
   const pct = (1 - value) * Math.PI * 100;
-  
+
   return (
     <svg
       width={radius * 2}
@@ -39,13 +35,7 @@ const Percentagecircle = ({ radius, value = 1, children, settingsstyle }) => {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <Circlebackground
-        r="40"
-        cx="50"
-        cy="50"
-        fill="transparent"
-        strokecirclebg={strokecirclebg}
-      />
+      <Circlebackground r="40" cx="50" cy="50" fill="transparent" strokecirclebg={strokecirclebg} />
       <Circle
         r="40"
         cx="50"
@@ -65,7 +55,7 @@ const Percentagecircle = ({ radius, value = 1, children, settingsstyle }) => {
 
 Percentagecircle.propTypes = {
   radius: PropTypes.number.isRequired,
-  settingsstyle: PropTypes.object.isRequired
+  settingsstyle: PropTypes.object.isRequired,
 };
 
 export default Percentagecircle;
