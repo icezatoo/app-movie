@@ -17,7 +17,7 @@ export const moviedetailReducer = (state = Initstate, action) => {
         datamovie: action.moviedetail,
       };
     case MoviedetailActions.REQUESTED_MOVIEDETAIL_ERROR:
-      return { ...state, loading: false, datamovie: null, error: null };
+      return { ...state, loading: true, datamovie: null, error: action.error };
     default:
       return state;
   }

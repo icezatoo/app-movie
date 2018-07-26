@@ -1,7 +1,15 @@
 // @ts-nocheck
 import React, { Fragment } from 'react';
 import { withStateHandlers, pure, compose } from 'recompose';
+import styled from 'styled-components';
 import DialogVideo from './DialogVideo';
+import ButtonIcon from '../../../../common/components/buttonicon/ButtonIcon';
+import RowViewInner from '../../../../hoc/Rowview';
+
+const PlayTrailerText = styled.div`
+  font-weight: 700;
+  margin-left: 7px;
+`;
 
 const enhance = withStateHandlers(
   {
@@ -20,12 +28,12 @@ const RenderPlayTrailer = ({ videoslist, displaydialog, _dialogClose, _showDialo
 
   return (
     <Fragment>
-      <a className="button is-rounded" onClick={_showDialog}>
-        <span style={{ margin: 10 }}>
-          <i className="fas fa-play" />
-        </span>
-        <span> Play Trailer</span>
-      </a>
+      <ButtonIcon onClick={_showDialog}>
+        <i className="fas fa-play" />
+      </ButtonIcon>
+      <PlayTrailerText>
+        <p>Play Trailer</p>
+      </PlayTrailerText>
       <DialogVideo
         showdialog={displaydialog}
         videodata={viedofilter[0]}
@@ -37,5 +45,6 @@ const RenderPlayTrailer = ({ videoslist, displaydialog, _dialogClose, _showDialo
 
 export default compose(
   pure,
-  enhance
+  enhance,
+  RowViewInner
 )(RenderPlayTrailer);

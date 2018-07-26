@@ -22,8 +22,9 @@ const MovielistContainer = styled.div`
 
 class MovielistItem extends PureComponent {
   render() {
-    const { header, apipath } = this.props.viewdata;
-    const { images } = this.props.configuration;
+    const { viewdata, configuration } = this.props;
+    const { header, apipath } = viewdata;
+    const { images } = configuration;
     return (
       <MovielistContainer>
         <HeaderContainer> {header} </HeaderContainer>

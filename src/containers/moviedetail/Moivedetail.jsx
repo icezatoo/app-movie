@@ -44,15 +44,17 @@ class Moivedetail extends Component {
   };
 
   render() {
-    const { loading, classes } = this.props;
+    const { loading, classes, errorres } = this.props;
+    const status = !!(loading && !errorres);
     const mapdatamovie = this.mapDataService();
     return (
       <MovieContainer>
-        {loading ? (
+        {status ? (
           <RenderMoviedetail dataapi={mapdatamovie} classes={classes} />
         ) : (
           <CircularLoader />
         )}
+        {errorres && <p>{errorres.status_message}</p>}
       </MovieContainer>
     );
   }
@@ -62,6 +64,7 @@ const mapStateToProps = state => ({
   datamovie: state.moviedetail.datamovie,
   dataconfig: state.movieconfig.dataconfig,
   loading: state.moviedetail.loading,
+  errorres: state.moviedetail.error,
 });
 const mapDispatchToProps = dispatch => ({
   fetchdatadetail: movieid => dispatch(MovieDetailActions.fetchdatadetail(movieid)),

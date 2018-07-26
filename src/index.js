@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import { Router } from 'react-router';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
-import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
+import registerServiceWorker from './registerServiceWorker';
+import App from './App';
 import './index.css';
 import configureStore from './common/store/configureStore';
 import * as MovieconfigActions from './common/actions/movieconfig/movieconfigaction';

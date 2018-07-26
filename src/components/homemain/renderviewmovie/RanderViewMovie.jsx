@@ -12,18 +12,17 @@ class RanderViewMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      classes: this.props.classes,
-      justify: 'center',
+      classes: props.classes,
       viewdata: [...dataviewmovie],
     };
   }
 
   render() {
-    const { classes } = this.state;
+    const { classes, viewdata } = this.state;
     const { dataconfigapi } = this.props;
     return (
       <GridContainer spacing={24} classes={classes.root}>
-        {this.state.viewdata.map(valueview => (
+        {viewdata.map(valueview => (
           <Grid item xs={12} key={valueview.id}>
             <Paper className={classes.paper}>
               {dataconfigapi ? (
@@ -34,7 +33,6 @@ class RanderViewMovie extends Component {
             </Paper>
           </Grid>
         ))}
-        />
       </GridContainer>
     );
   }

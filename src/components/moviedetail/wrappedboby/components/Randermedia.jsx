@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Slider from 'react-slick';
 import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
+import LazyLoad from 'react-lazyload';
 import { compose, setPropTypes, branch, renderNothing } from 'recompose';
 import HeaderTitle from '../../headertitle/Headertitle';
 import CircularLoader from '../../../../common/components/loader/CircularLoader';
@@ -57,25 +58,27 @@ class Randermedia extends PureComponent {
           <HeaderTitle configstyleheader={configstyleheader}>Media</HeaderTitle>
         </Grid>
         <Grid item xs={10}>
-          <div style={{ background: 'black' }}>
-            <Slider {...settings} afterChange={this.afterChangeSlider}>
-              {datavideoslist.map(val => (
-                <div key={val.id}>
-                  {val.showvideo ? (
-                    <ReactPlayer
-                      style={{ display: 'inline-block' }}
-                      url={PATHURL + val.key}
-                      controls
-                    />
-                  ) : (
-                    <div>
-                      <CircularLoader />
-                    </div>
-                  )}
-                </div>
-              ))}
-            </Slider>
-          </div>
+          <LazyLoad height={200}>
+            <div style={{ background: 'black' }}>
+              <Slider {...settings} afterChange={this.afterChangeSlider}>
+                {datavideoslist.map(val => (
+                  <div key={val.id}>
+                    {val.showvideo ? (
+                      <ReactPlayer
+                        style={{ display: 'inline-block' }}
+                        url={PATHURL + val.key}
+                        controls
+                      />
+                    ) : (
+                      <div>
+                        <CircularLoader />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </Slider>
+            </div>
+          </LazyLoad>
           <hr />
         </Grid>
       </Fragment>

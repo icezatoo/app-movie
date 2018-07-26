@@ -1,15 +1,27 @@
 import React, { Fragment } from 'react';
+import { compose } from 'recompose';
 import HeaderTitle from '../../headertitle/Headertitle';
+import RowList from '../../../../hoc/Rowlist';
+import Listview from '../../../../hoc/Listview';
 
 const RenderGenres = ({ genres }) => {
   const configstyleheader = { size: 1.3, height: 2.0, weight: 600 };
-  const genresname = genres.length !== 0 ? genres.map(val => val.name).join(' , ') : ' No Genres';
   return (
     <Fragment>
       <HeaderTitle configstyleheader={configstyleheader}>Genres</HeaderTitle>
-      <Fragment>{genresname}</Fragment>
+      <div className="tags">
+        {genres &&
+          genres.map(val => (
+            <span className="tag" key={val.id}>
+              {val.name}
+            </span>
+          ))}
+      </div>
     </Fragment>
   );
 };
 
-export default RenderGenres;
+export default compose(
+  Listview,
+  RowList
+)(RenderGenres);

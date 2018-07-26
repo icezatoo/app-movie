@@ -1,7 +1,6 @@
 // @ts-nocheck
 import React, { PureComponent } from 'react';
 import Grid from '@material-ui/core/Grid';
-import LazyLoad from 'react-lazyload';
 import GridContainer from '../../../common/components/grid/girdcontainer';
 import RanderCardPeople from './components/RanderCardPeople';
 import Randermedia from './components/Randermedia';
@@ -22,9 +21,7 @@ class Wappedbody extends PureComponent {
         <Grid item xs={8}>
           <GridContainer spacing={8} alignItems="center" justify="center">
             <RanderCardPeople configstyleheader={configstyleheader} {...moviedetail} {...images} />
-            <LazyLoad height={500}>
-              <Randermedia configstyleheader={configstyleheader} {...moviedetail} />
-            </LazyLoad>
+            <Randermedia configstyleheader={configstyleheader} {...moviedetail} />
           </GridContainer>
         </Grid>
       </GridContainer>

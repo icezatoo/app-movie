@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import GridContainer from '../../../common/components/grid/girdcontainer';
 import ImageComponent from '../../../common/components/images/ImageComponent';
 import RanderBody from './components/RanderBody';
+
 // https://img.gs/blvznglhbp/full/http://example.com/kitten.jpg
 const MovieImages = styled.div`
   background-image: url(${props => props.img});
@@ -30,29 +31,25 @@ const RadialMovieImages = styled.div`
   );
 `;
 
-const BobyHeaderStyle = styled.div`
-  height: 513px;
-  color: white;
-`;
-
 class WappedHeader extends PureComponent {
   render() {
-    const { imgposter, imgbackdrop, moviedetail } = this.props.dataapi;
+    const { dataapi } = this.props;
+    const { imgposter, imgbackdrop, moviedetail } = dataapi;
     return (
       <MovieImages img={imgbackdrop}>
         <RadialMovieImages>
           <GridContainer spacing={16} alignItems="center" justify="center">
-            <Grid item xs={4}>
-              <GridContainer alignItems="center" justify="center">
+            <Grid item xs={2}>
+              <div style={{ float: 'right' }}>
                 <ImageComponent src={imgposter} alt="backf" />
-              </GridContainer>
+              </div>
             </Grid>
             <Grid item xs={5}>
-              <BobyHeaderStyle>
-                <GridContainer spacing={16} alignItems="center" justify="center">
+              <section className="section">
+                <div className="container">
                   <RanderBody moviedetail={moviedetail} />
-                </GridContainer>
-              </BobyHeaderStyle>
+                </div>
+              </section>
             </Grid>
           </GridContainer>
         </RadialMovieImages>

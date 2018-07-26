@@ -18,8 +18,9 @@ const Circle = styled.circle`
 
 const Percentage = styled.text`
   fill: #fffdfd;
-  font-size: 1.5em;
+  font-size: 2em;
   text-anchor: middle;
+  font-family: 'Teko', sans-serif;
   font-weight: bold;
 `;
 

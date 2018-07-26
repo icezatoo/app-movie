@@ -3,8 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
-import { compose, branch, renderComponent, setPropTypes } from 'recompose';
-import CircularLoader from '../../../../common/components/loader/CircularLoader';
+import { compose, branch, setPropTypes, renderNothing } from 'recompose';
 import HeaderTitle from '../../headertitle/Headertitle';
 
 const Modal = styled.div`
@@ -113,9 +112,9 @@ const withPropTypes = setPropTypes({
   videodata: PropTypes.object.isRequired,
 });
 
-const spinnerWhileLoading = isLoading => branch(isLoading, renderComponent(CircularLoader));
+const hideIfNoData = hasNoData => branch(hasNoData, renderNothing);
 
-const enhance = spinnerWhileLoading(props => !props.videodata);
+const enhance = hideIfNoData(props => !props.videodata);
 
 export default compose(
   withPropTypes,
