@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import Formsearch from '../formsearch/Formsearch';
 
 const SearchContainer = styled.div`
   display: flex;
@@ -9,11 +10,11 @@ const SearchContainer = styled.div`
   padding-top: 100px;
 `;
 
-class Searchmain extends Component {
+class Searchmain extends PureComponent {
   render() {
     return (
       <SearchContainer>
-        <p>testsearch</p>
+        <Formsearch />
       </SearchContainer>
     );
   }

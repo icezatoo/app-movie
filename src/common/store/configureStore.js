@@ -7,10 +7,7 @@ import roorSaga from '../saga';
 const sagaMiddleware = createSagaMiddleware();
 export default function configureStore() {
   return {
-    ...createStore(
-      rootReducer,
-      composeWithDevTools(applyMiddleware(sagaMiddleware))
-    ),
-    runSaga: sagaMiddleware.run(roorSaga)
+    ...createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware))),
+    runSaga: sagaMiddleware.run(roorSaga),
   };
 }

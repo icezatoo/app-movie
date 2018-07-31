@@ -31,7 +31,6 @@ const mapdataChangevideo = (datavideoslist, index, indexlist) =>
 class Randermedia extends PureComponent {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       datavideoslist: props.videoslist.map(mapdatashowvideo),
     };

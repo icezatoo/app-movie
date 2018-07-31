@@ -20,6 +20,7 @@ const Percentage = styled.text`
   fill: #fffdfd;
   font-size: 2em;
   text-anchor: middle;
+  font-display: swap;
   font-family: 'Teko', sans-serif;
   font-weight: bold;
 `;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -8,7 +8,7 @@ import GridContainer from '../../../common/components/grid/girdcontainer';
 import CircularLoader from '../../../common/components/loader/CircularLoader';
 import MovielistItem from '../movielistitem/MovielistItem';
 
-class RanderViewMovie extends Component {
+class RanderViewMovie extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
