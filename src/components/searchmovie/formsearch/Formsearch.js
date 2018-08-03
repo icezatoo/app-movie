@@ -17,18 +17,9 @@ class Formsearch extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
       suggestions: [],
     };
   }
-
-  onChange = (event, { newValue, method }) => {
-    // console.log(newValue, 'newvalue');
-    // console.log(method, 'method');
-    this.setState({
-      value: newValue,
-    });
-  };
 
   onSuggestionsFetchRequested = ({ value }) => {
     const inputValue = value.trim().toLowerCase();
@@ -59,14 +50,14 @@ class Formsearch extends PureComponent {
   mapdatatooptions = data => data.map(val => ({ value: val.id, label: val.title }));
 
   render() {
-    const { value, suggestions } = this.state;
+    const { suggestions } = this.state;
+    const { handleSubmit, handleReset, value, onChanges } = this.props;
     const inputProps = {
       placeholder: 'Search Movie ',
       value,
-      onChange: this.onChange,
+      onChange: onChanges,
     };
 
-    const { handleSubmit, valueserach, handleChange, handleReset } = this.props;
     return (
       <FormContainer>
         <div className="container">
@@ -80,13 +71,6 @@ class Formsearch extends PureComponent {
                 renderSuggestion={renderSuggestion}
                 inputProps={inputProps}
               />
-              {/* <input
-                className="input is-rounded"
-                type="text"
-                value={valueserach}
-                onChange={handleChange}
-                placeholder="Search"
-              /> */}
             </div>
             <div className="field is-grouped is-grouped-centered">
               <p className="control">

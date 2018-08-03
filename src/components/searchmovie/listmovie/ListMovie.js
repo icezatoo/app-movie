@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import LazyLoad from 'react-lazyload';
 import Boxviewlist from '../boxview/Boxviewlist';

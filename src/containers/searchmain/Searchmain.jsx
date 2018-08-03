@@ -39,9 +39,9 @@ class Searchmain extends PureComponent {
     fetchdataListsearch({ search: serachdata, page: 0 });
   };
 
-  handleChange = event => {
-    this.setState({ valueserach: event.target.value });
-  };
+  // handleChange = event => {
+  //   this.setState({ valueserach: event.target.value });
+  // };
 
   handleReset = event => {
     this.setState({ valueserach: '' });
@@ -61,6 +61,17 @@ class Searchmain extends PureComponent {
     return totalpages;
   };
 
+  onChanges = (event, { newValue, method }) => {
+    const inputValue = newValue.trim().toLowerCase();
+    const { fetchdataListsearch } = this.props;
+    this.setState({
+      valueserach: newValue,
+    });
+    if (method === 'click') {
+      fetchdataListsearch({ search: inputValue, page: 0 });
+    }
+  };
+
   render() {
     const { valueserach, pageselect } = this.state;
     const { datalist, errorres } = this.props;
@@ -72,8 +83,8 @@ class Searchmain extends PureComponent {
           <Formsearch
             handleReset={this.handleReset}
             handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            valueserach={valueserach}
+            onChanges={this.onChanges}
+            value={valueserach}
           />
           {datalist ? (
             <ListMovie datalist={datalist} pageselect={pageselect} />

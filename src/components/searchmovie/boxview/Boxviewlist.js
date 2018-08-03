@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LazyLoad from 'react-lazyload';
-import ImageComponent from '../../../common/components/images/ImageComponent';
+// import ImageComponent from '../../../common/components/images/ImageComponent';
 
 const BoxContainer = styled.li`
   margin-top: 10px;
