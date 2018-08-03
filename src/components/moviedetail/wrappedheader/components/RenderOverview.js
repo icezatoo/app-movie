@@ -7,7 +7,7 @@ import Listview from '../../../../hoc/Listview';
 
 const TextOverview = styled.p`
   white-space: 'normal';
-  width: 750px;
+  width: 80%;
   font-size: 1.2em;
 `;
 

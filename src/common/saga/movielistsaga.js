@@ -5,10 +5,12 @@ import * as MovieListAction from '../actions/movielist/movielist';
 
 export default function* CallApiListSearch({ payload }) {
   try {
+    const { search, page } = payload;
     yield put(MovieListAction.requestMovieList());
     const datalist = yield call(() =>
       Axios.get(
-        `/search/movie?api_key=${api_Key}&language=en-US&page=1&query=${payload}&include_adult=false`
+        `/search/movie?api_key=${api_Key}&language=en-US&page=${page +
+          1}&query=${search}&include_adult=false`
       ).then(response => response.data)
     );
     yield put(MovieListAction.requestMovieListSuccess(datalist));

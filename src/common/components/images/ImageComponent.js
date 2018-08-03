@@ -4,7 +4,7 @@ import FadeIn from 'react-lazyload-fadein';
 
 const ImageComponent = ({ styleclasss, styles, src, alt, widths, height }) => (
   <Fragment>
-    <FadeIn height={400}>
+    <FadeIn height={200}>
       {onload => (
         <img
           className={styleclasss}
