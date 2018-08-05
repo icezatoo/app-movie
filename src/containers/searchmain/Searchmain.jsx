@@ -20,7 +20,7 @@ class Searchmain extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      valueserach: '',
+      valueserach: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -38,10 +38,6 @@ class Searchmain extends PureComponent {
     const serachdata = valueserach || 'a';
     fetchdataListsearch({ search: serachdata, page: 0 });
   };
-
-  // handleChange = event => {
-  //   this.setState({ valueserach: event.target.value });
-  // };
 
   handleReset = event => {
     this.setState({ valueserach: '' });
@@ -65,7 +61,7 @@ class Searchmain extends PureComponent {
     const inputValue = newValue.trim().toLowerCase();
     const { fetchdataListsearch } = this.props;
     this.setState({
-      valueserach: newValue,
+      valueserach: newValue
     });
     if (method === 'click') {
       fetchdataListsearch({ search: inputValue, page: 0 });
@@ -74,8 +70,10 @@ class Searchmain extends PureComponent {
 
   render() {
     const { valueserach, pageselect } = this.state;
-    const { datalist, errorres } = this.props;
-    const pagetotle = datalist ? this.checkDatalistTotalPage(datalist.total_pages) : 0;
+    const { datalist, errorres, selectViewlist, selectview } = this.props;
+    const pagetotle = datalist
+      ? this.checkDatalistTotalPage(datalist.total_pages)
+      : 0;
     const page = datalist && datalist.page - 1;
     return (
       <SearchContainer>
@@ -87,9 +85,16 @@ class Searchmain extends PureComponent {
             value={valueserach}
           />
           {datalist ? (
-            <ListMovie datalist={datalist} pageselect={pageselect} />
+            <ListMovie
+              datalist={datalist}
+              selectViewlist={selectViewlist}
+              pageselect={pageselect}
+              selectview={selectview}
+            />
           ) : (
-            <Fragment>{errorres ? <p>{errorres}</p> : <CircularLoader />}</Fragment>
+            <Fragment>
+              {errorres ? <p>{errorres}</p> : <CircularLoader />}
+            </Fragment>
           )}
           {!errorres && (
             <ReactPaginate
@@ -102,7 +107,9 @@ class Searchmain extends PureComponent {
               marginPagesDisplayed={2}
               forcePage={page}
               pageRangeDisplayed={5}
-              containerClassName={`${datalist ? 'pagination' : 'paginationoff'}`}
+              containerClassName={`${
+                datalist ? 'pagination' : 'paginationoff'
+              }`}
               activeClassName="active"
             />
           )}
@@ -116,10 +123,14 @@ const mapStateToProps = state => ({
   datalist: state.moviedatalist.datalist,
   loading: state.moviedatalist.loading,
   errorres: state.moviedatalist.error,
+  selectview: state.moviedatalist.selectview
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchdataListsearch: dataserach => dispatch(MovieListActions.fetchdataListsearch(dataserach)),
+  fetchdataListsearch: dataserach =>
+    dispatch(MovieListActions.fetchdataListsearch(dataserach)),
+  selectViewlist: selectview =>
+    dispatch(MovieListActions.SelectViewlist(selectview))
 });
 
 export default connect(

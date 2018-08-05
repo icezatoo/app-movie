@@ -17,7 +17,7 @@ class Formsearch extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      suggestions: [],
+      suggestions: []
     };
   }
 
@@ -26,7 +26,7 @@ class Formsearch extends PureComponent {
     const inputLength = inputValue.length;
     if (inputLength === 0) {
       this.setState({
-        suggestions: [],
+        suggestions: []
       });
     }
     axios
@@ -36,18 +36,16 @@ class Formsearch extends PureComponent {
       .then(response => {
         const { results } = response.data;
         this.setState({
-          suggestions: results,
+          suggestions: results
         });
       });
   };
 
   onSuggestionsClearRequested = () => {
     this.setState({
-      suggestions: [],
+      suggestions: []
     });
   };
-
-  mapdatatooptions = data => data.map(val => ({ value: val.id, label: val.title }));
 
   render() {
     const { suggestions } = this.state;
@@ -55,7 +53,7 @@ class Formsearch extends PureComponent {
     const inputProps = {
       placeholder: 'Search Movie ',
       value,
-      onChange: onChanges,
+      onChange: onChanges
     };
 
     return (
@@ -77,7 +75,12 @@ class Formsearch extends PureComponent {
                 <input className="button" type="submit" value="Search" />
               </p>
               <p className="control">
-                <input className="button" type="reset" value="Reset" onClick={handleReset} />
+                <input
+                  className="button"
+                  type="reset"
+                  value="Reset"
+                  onClick={handleReset}
+                />
               </p>
             </div>
           </form>

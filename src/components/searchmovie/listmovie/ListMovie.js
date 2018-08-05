@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import LazyLoad from 'react-lazyload';
 import Boxviewlist from '../boxview/Boxviewlist';
+import BoxImage from '../boximage/BoxImage';
 
 const ListMovieContainer = styled.div`
   display: flex;
@@ -25,6 +26,14 @@ const ListMovieHeaderButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+`;
+
+const BoxImageContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  justify-content: center;
+  margin-bottom: 20px;
 `;
 
 const ListHeader = ({ selected, handleselectview }) => (
@@ -52,36 +61,48 @@ const ListHeader = ({ selected, handleselectview }) => (
 );
 
 class ListMovie extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected: 0,
-    };
-  }
+
 
   handleselectview = value => {
-    this.setState({ selected: value });
+    const { selectViewlist } = this.props;
+    selectViewlist(value);
   };
 
   randerBoxlist = results => (
     <ul>
       {results.map(val => (
-        <LazyLoad once={val.once} key={`${val.id}-${val.title}`} height={200} offset={[-200, 0]}>
+        <LazyLoad
+          once={val.once}
+          key={`${val.id}-${val.title}`}
+          height={200}
+          offset={[-200, 0]}
+        >
           <Boxviewlist {...val} />
         </LazyLoad>
       ))}
     </ul>
   );
 
+  randerBoxImage = results => (
+    <BoxImageContainer>
+      {results.map(val => <BoxImage key={`${val.id}-${val.title}`} {...val} />)}
+    </BoxImageContainer>
+  );
+
   render() {
-    const { selected } = this.state;
-    const { datalist } = this.props;
+    // const { selected } = this.state;
+    const { datalist, selectview } = this.props;
     const { results } = datalist;
     return (
       <ListMovieContainer>
         <div className="container">
-          <ListHeader selected={selected} handleselectview={this.handleselectview} />
-          {selected === 0 ? this.randerBoxlist(results) : <p>test</p>}
+          <ListHeader
+            selected={selectview}
+            handleselectview={this.handleselectview}
+          />
+          {selectview === 0
+            ? this.randerBoxlist(results)
+            : this.randerBoxImage(results)}
         </div>
       </ListMovieContainer>
     );

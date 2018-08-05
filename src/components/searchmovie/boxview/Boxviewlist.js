@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-// import ImageComponent from '../../../common/components/images/ImageComponent';
+import { pathImage } from '../../../common/api/connect';
+import { Link } from 'react-router-dom';
 
 const BoxContainer = styled.li`
   margin-top: 10px;
   margin-bottom: 10px;
 `;
-
-const pathImage = 'http://image.tmdb.org/t/p/w154';
 
 const Noimageholder = styled.div`
   display: inline-block;
@@ -27,7 +26,11 @@ const Noimageholder = styled.div`
 const BoxMediaImages = ({ poster_path, title }) => (
   <div className="media-left">
     <figure className="image is-154x154">
-      {poster_path ? <img src={pathImage + poster_path} alt={title} /> : <Noimageholder />}
+      {poster_path ? (
+        <img src={pathImage + 'w154' + poster_path} alt={title} />
+      ) : (
+        <Noimageholder />
+      )}
     </figure>
   </div>
 );
@@ -52,7 +55,9 @@ const Boxviewlist = ({ poster_path, overview, title, id }) => (
         <BoxMediaImages poster_path={poster_path} title={title} />
         <div className="media-content">
           <BoxMediaContent overview={overview} title={title} />
-          <p style={{ float: 'right' }}>More Info</p>
+          <Link to={`/movie/${id}`}>
+            <p style={{ float: 'right' }}>More Info</p>
+          </Link>
         </div>
       </article>
     </div>
