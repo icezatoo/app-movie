@@ -2,10 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Innercontent = styled.ul`
-  margin-bottom: 30px;
-  margin-top: 40px;
+  margin-top: 20px;
   width: 100%;
-  height: 68px;
   display: flex;
   align-items: center;
   justify-content: flex-start;

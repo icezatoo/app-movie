@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { compose, setPropTypes, pure } from 'recompose';
 import ImageComponent from '../../../../common/components/images/ImageComponent';
-import noimg from '../../../../assets/images/noimage.jpg';
+import nophoto from '../../../../assets/images/nophoto.png';
 
 const Card = styled.li`
   border: 1px solid #e3e3e3;
@@ -35,7 +35,7 @@ const Cardimg = styled.div`
 `;
 
 const CardimgItem = ({ path, profile_path, name }) => {
-  const pathimg = profile_path ? path + profile_path : noimg;
+  const pathimg = profile_path ? path + profile_path : nophoto;
   return (
     <Cardimg>
       <ImageComponent src={pathimg} alt={name} />
@@ -65,7 +65,7 @@ const CardList = ({ credit, path }) => (
 
 const withPropTypes = setPropTypes({
   credit: PropTypes.object.isRequired,
-  path: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired
 });
 
 export default compose(

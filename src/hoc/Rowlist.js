@@ -5,6 +5,7 @@ const Rowlist = styled.li`
   font-size: 0.9em;
   margin-right: 20px;
   padding: 10px 0;
+  width: 75%;
 `;
 
 const RowList = WrappedComponent => props => (
