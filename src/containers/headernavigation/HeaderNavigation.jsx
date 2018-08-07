@@ -78,6 +78,7 @@ class HeaderNavigation extends Component {
                 <div className="field is-grouped">
                   <p className="control">
                     <a
+                      target="_blank"
                       className="button is-black"
                       href="https://github.com/icezatoo"
                     >
