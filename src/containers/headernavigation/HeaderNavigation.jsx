@@ -26,7 +26,7 @@ class HeaderNavigation extends Component {
       data.map(menu => (
         <Link
           key={menu.key}
-          to={process.env.PUBLIC_URL + menu.link}
+          to={menu.link}
           className={'navbar-item'}
           onClick={this.onLinkClick}
         >
