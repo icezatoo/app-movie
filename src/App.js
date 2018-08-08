@@ -43,7 +43,11 @@ class App extends Component {
         <ContentContainer>
           <section className="hero">
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route
+                exact
+                path={process.env.PUBLIC_URL + '/'}
+                component={Home}
+              />
               <Route exact path="/search" component={Search} />
               <Route exact path="/movie/:movieId" component={Movie} />
               <Route path="*" component={NotFound} />
